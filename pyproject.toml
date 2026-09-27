@@ -1,0 +1,34 @@
+[project]
+name = "azlan"
+version = "0.1.0"
+description = "Web application security auditing platform"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "pydantic>=2,<3",
+  "pydantic-settings>=2,<3",
+  "sqlalchemy>=2,<3",
+  "greenlet",
+  "asyncpg",
+  "alembic",
+  "httpx",
+  "selectolax",
+  "graphql-core",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["backend*", "worker*"]
+
+[project.optional-dependencies]
+browser = ["playwright"]
+dev = ["pytest", "pytest-asyncio", "ruff", "mypy", "respx"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["src"]
